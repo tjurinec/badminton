@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.9.23"
     id("application")
+    id("com.github.johnrengelman.shadow") version "8.1.0" // Shadow plugin
 }
 repositories {
     mavenCentral()
@@ -13,4 +14,9 @@ dependencies {
 
 application {
     mainClass.set("com.example.App")
+}
+
+// Heroku staging task configuration
+tasks.register("stage") {
+    dependsOn("shadowJar")
 }
